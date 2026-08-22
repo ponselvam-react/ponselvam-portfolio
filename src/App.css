@@ -321,40 +321,7 @@ footer {
   cursor: pointer;
 }
 
-@media (max-width: 768px) {
-  .menu-btn {
-    display: block;
-  }
 
-  .nav-links {
-    position: absolute;
-    top: 70px;
-    right: 5%;
-    width: 200px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-    background: #111c33;
-    border: 1px solid #334155;
-    border-radius: 12px;
-
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(-10px);
-    transition: 0.3s ease;
-  }
-
-  .nav-links.active {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .nav-links a {
-    font-size: 16px;
-  }
-}
 
 
 @media (max-width: 768px) {
