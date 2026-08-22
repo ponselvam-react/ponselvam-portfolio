@@ -1,7 +1,33 @@
 import profile from './assets/profile.jpeg'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 function App() {
+  const [activeSection, setActiveSection] = useState('home')
+  useEffect(() => {
+    const sections = document.querySelectorAll('.section')
+
+    const observer = new IntersectionObserver(
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show')
+      }
+    })
+  },
+  {
+    threshold: 0.05,
+  }
+)
+
+    sections.forEach((section) => {
+      observer.observe(section)
+    })
+
+    return () => {
+      observer.disconnect()
+    }
+  }, [])
   return (
     <div className="portfolio">
 
@@ -24,7 +50,7 @@ function App() {
 
           <h1>Ponselvam S</h1>
 
-          <h2>Frontend Developer | React Developer</h2>
+          <h2 className="typing-text">Frontend Developer | React Developer</h2>
 
           <p className="description">
             I build responsive and user-friendly web interfaces

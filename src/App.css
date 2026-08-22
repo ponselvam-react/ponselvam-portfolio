@@ -334,6 +334,11 @@ footer {
 
   .home h2 {
     font-size: 24px;
+
+  }
+
+  .typing-text {
+    font-size: 24px;
   }
 
   .home-image {
@@ -401,17 +406,46 @@ footer {
 
 
 .home-content {
-  animation: fadeUp 1s ease forwards;
+  animation: homeContent 1s ease-out forwards;
 }
 
 .home-image {
-  animation: fadeIn 1.2s ease forwards;
+  animation: homeImage 1.2s ease-out forwards;
 }
 
+@keyframes homeContent {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
 
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes homeImage {
+  from {
+    opacity: 0;
+    transform: translateX(50px) scale(0.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
 
 .section {
-  animation: fadeUp 0.8s ease forwards;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.section.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 
@@ -436,4 +470,123 @@ footer {
 .project-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 10px 30px rgba(56, 189, 248, 0.12);
+}
+
+
+
+.about-card {
+  transition: transform 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.about-card:hover {
+  transform: translateY(-8px);
+  border-color: #38bdf8;
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.12);
+}
+
+.navbar {
+  animation: navbarDrop 0.8s ease-out forwards;
+}
+
+@keyframes navbarDrop {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+.nav-links a {
+  position: relative;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  left: 0;
+  bottom: -6px;
+  background: #38bdf8;
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+
+
+.btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.2);
+}
+
+
+
+.contact-links a {
+  transition: transform 0.3s ease, border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.contact-links a:hover {
+  transform: translateY(-5px) scale(1.03);
+  border-color: #38bdf8;
+  box-shadow: 0 8px 20px rgba(56, 189, 248, 0.12);
+}
+
+footer {
+  transition: 0.3s ease;
+}
+
+footer:hover {
+  color: #94a3b8;
+}
+
+.typing-text {
+  color: #94a3b8;
+  font-size: 30px;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 0;
+  animation: typingLoop 7s steps(18, end) infinite;
+}
+
+@keyframes typingLoop {
+  0% {
+    width: 0;
+  }
+
+  40% {
+    width: 100%;
+  }
+
+  90% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+  }
+}
+
+
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
 }
