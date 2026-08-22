@@ -4,21 +4,26 @@ import './App.css'
 
 function App() {
   const [activeSection, setActiveSection] = useState('home')
+  const [menuOpen, setMenuOpen] = useState(false)
   useEffect(() => {
-    const sections = document.querySelectorAll('.section')
+    const sections = document.querySelectorAll('section')
 
     const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('show')
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+
+            if (entry.target.classList.contains('section')) {
+              entry.target.classList.add('show')
+            }
+          }
+        })
+      },
+      {
+        threshold: 0.5,
       }
-    })
-  },
-  {
-    threshold: 0.05,
-  }
-)
+    )
 
     sections.forEach((section) => {
       observer.observe(section)
@@ -34,13 +39,54 @@ function App() {
       <nav className="navbar">
         <h2 className="logo">Ponselvam.S</h2>
 
-        <div className="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
+        <div className={`nav-links ${menuOpen ? 'active' : ''}`}>
+          <a
+            href="#home"
+            className={activeSection === 'home' ? 'active' : ''}
+            onClick={() => setMenuOpen(false)}
+          >
+            Home
+          </a>
+
+          <a
+            href="#about"
+            className={activeSection === 'about' ? 'active' : ''}
+            onClick={() => setMenuOpen(false)}
+          >
+            About
+          </a>
+
+          <a
+            href="#skills"
+            className={activeSection === 'skills' ? 'active' : ''}
+            onClick={() => setMenuOpen(false)}
+          >
+            Skills
+          </a>
+
+          <a
+            href="#projects"
+            className={activeSection === 'projects' ? 'active' : ''}
+            onClick={() => setMenuOpen(false)}
+          >
+            Projects
+          </a>
+
+          <a
+            href="#contact"
+            className={activeSection === 'contact' ? 'active' : ''}
+            onClick={() => setMenuOpen(false)}
+          >
+            Contact
+          </a>
         </div>
+
+        <button
+          className="menu-btn"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          ☰
+        </button>
       </nav>
 
 
